@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 
 # Reads the Boston house prices csv
 data = pd.read_csv('boston.csv')
@@ -17,3 +18,12 @@ data = pd.get_dummies(data)
 scaler = StandardScaler()
 sc_data = scaler.fit_transform(data)
 
+# X --> Features
+# Y --> Target Variable
+X = data.drop('MEDV', axis=1) # axis=1 -> changes across columns
+Y = data['MEDV']
+
+# Obtaining test and train variables for X and Y
+# test_size -> proportion in which it will be separated (in this case: 20% testing, 80% training)
+# random_state -> generation seed, implies deterministic outcome across instances
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=36)
