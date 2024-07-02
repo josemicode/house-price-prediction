@@ -1,6 +1,7 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
+import joblib
 
 # Reads the Boston house prices csv
 data = pd.read_csv('boston.csv')
@@ -27,3 +28,9 @@ Y = data['MEDV']
 # test_size -> proportion in which it will be separated (in this case: 20% testing, 80% training)
 # random_state -> generation seed, implies deterministic outcome across instances
 X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.2, random_state=36)
+
+# Use of joblib to dump the processed variables into a .pkl file
+joblib.dump((X_train, X_test, Y_train, Y_test), 'prep_data.pkl')
+
+# In order to access these allocated variables we'd use:
+# X_train, X_test, Y_train, Y_test = joblib.load('prep_data.pkl')
