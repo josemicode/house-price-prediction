@@ -26,3 +26,8 @@ M_corr = data.corr()
 plt.title("Correlation Heatmap")
 sns.heatmap(M_corr, annot=True, cmap='coolwarm')
 plt.show()
+
+# Pairplot to show selected features respective to main variable
+plt.figure(3)
+plt.title("Features -> MEDV")
+sns.pairplot(data[features])
