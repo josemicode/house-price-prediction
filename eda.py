@@ -18,3 +18,11 @@ plt.xlabel("Median Value")
 plt.ylabel("Frequency")
 sns.histplot(data['MEDV'], kde=True)
 plt.show()
+
+# Heatmap representing the correlation between values
+plt.figure(2, figsize=(14, 6))
+# Matrix of correlation
+M_corr = data.corr()
+plt.title("Correlation Heatmap")
+sns.heatmap(M_corr, annot=True, cmap='coolwarm')
+plt.show()
