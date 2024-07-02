@@ -20,7 +20,7 @@ sns.histplot(data['MEDV'], kde=True)
 plt.show()
 
 # Heatmap representing the correlation between values
-plt.figure(2, figsize=(14, 6))
+plt.figure(2, figsize=(12, 6))
 # Matrix of correlation
 M_corr = data.corr()
 plt.title("Correlation Heatmap")
@@ -28,6 +28,9 @@ sns.heatmap(M_corr, annot=True, cmap='coolwarm')
 plt.show()
 
 # Pairplot to show selected features respective to main variable
-plt.figure(3)
-plt.title("Features -> MEDV")
-sns.pairplot(data[features])
+print("Show pairplot? [y/n] (memory intense)")
+choice = input()
+if(choice.lower() == 'y'):
+    features = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT']
+    sns.pairplot(data[features])
+    plt.show()
