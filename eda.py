@@ -34,3 +34,11 @@ if(choice.lower() == 'y'):
     features = ['CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT']
     sns.pairplot(data[features])
     plt.show()
+
+# Boxplot/violinplot for crime rate Vs median value
+plt.figure(3, figsize=(10,5))
+plt.title("Crime Rate vs Median Value")
+plt.xlabel("Crime Rate")
+plt.ylabel("Median Value")
+sns.violinplot(x='CRIM', y='MEDV', data=data)
+plt.show()
