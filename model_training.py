@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
+import os
 
 def modelEvaluator(model, X_train, X_test, Y_train, Y_test):
     #Train the model:
@@ -33,4 +34,8 @@ if __name__ == "__main__":
     best_model.fit(X_train, Y_train)
     print(f'Best Model: {best_model_name}')
     # Saving it
-    joblib.dump(best_model, f'models/{best_model_name.replace(" ", "_").lower()}_model.pkl')
+    folder_path = os.getcwd() # Current Working Directory getter
+    os.makedirs('models', exist_ok=True)
+    file_name = f'{best_model_name.replace(" ", "_").lower()}_model.pkl'
+    file_path = os.path.join(folder_path, 'models', file_name)
+    joblib.dump(best_model, file_path)
