@@ -1,5 +1,6 @@
 import os
 import joblib
+import warnings
 
 class ModelHandler:
     def __init__(self):
@@ -23,6 +24,7 @@ class ModelHandler:
         return self.model.predict([features])
 
 if __name__ == "__main__":
+    warnings.filterwarnings("ignore", category=UserWarning, module='sklearn')
     handler = ModelHandler()
     # Test:
     if(handler.filled):
