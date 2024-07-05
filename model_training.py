@@ -20,3 +20,17 @@ if __name__ == "__main__":
         'Linear Regression': LinearRegression(),
         'Random Forest': RandomForestRegressor(n_estimators=50, random_state=14) # num of trees, seed
     }
+    model_performance = {}
+    for model_name, model in models.items():
+        # Obtain the performance index by calling the evaluator function
+        mse = modelEvaluator(model, X_train, X_test, Y_train, Y_test)
+        # Introduce it via dictionary
+        model_performance[model_name] = mse
+        print(f'{model_name} MSE: {mse}')
+    # Model Selector
+    best_model_name = min(model_performance, key=model_performance.get)
+    best_model = models[best_model_name]
+    best_model.fit(X_train, Y_train)
+    print(f'Best Model: {best_model_name}')
+    # Saving it
+    joblib.dump(best_model, f'models/{best_model_name.replace(" ", "_").lower()}_model.pkl')
